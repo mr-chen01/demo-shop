@@ -1,8 +1,10 @@
 <template>
   <div class="home">
+    <!-- 顶部搜索 -->
     <div class="index-top"></div>
+    <!-- 顶部导航 -->
     <div class="index-category">
-      <div class="category" v-for="(list,i) in lists" :key="i">
+      <div class="category" v-for="(list,i) in lists" :key="i+10">
         <i class="iconfont" :class="list.font" :style="{background:list.color}"></i>
         <label>{{list.title}}</label>
       </div>
@@ -11,16 +13,20 @@
         <label>{{list.title}}</label>
       </div>
     </div>
-    <banner></banner>
-    <box-message/>
+    <!-- 轮播图 -->
+   <Banner :imgArr="imgArr"/>
+    <!-- <box-message/> -->
   </div>
 </template>
 
 <script>
 import Banner from "../components/Banner.vue";
-import BoxMessage from "../components/box-message.vue";
+// import BoxMessage from "../components/box-message.vue";
 export default {
   name: "Home",
+  components: {
+    Banner
+  },
   data() {
     return {
       lists: [
@@ -66,12 +72,25 @@ export default {
           title: "亲子/乐园",
           font: "icon-qinzi"
         }
+      ],
+      imgArr: [
+        //webpack问题，他会直接解析地址，而不是用js来解析，webpack用require解析，所以可以直接加，会把他当作对应的地址来解析
+        require("../assets/img/banner2.jpg"),
+        require("../assets/img/banner3.jpg"),
+        require("../assets/img/banner4.png")
       ]
     };
   },
-  components: {
-    Banner,
-    BoxMessage
+  methods:{
+    getList(){
+      this.$http.get('/random/10*10').then(res=>{ 
+        //在前面axios名字为http，由于前面已经定义过，这里只需相对地址
+        console.log(res);
+      })
+    }
+  },
+  mounted:function(){
+    this.getList();
   }
 };
 </script>

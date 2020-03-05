@@ -17,15 +17,11 @@ export default {
   name: "banner",
   data() {
     return {
-      n: 0,
-      imgArr: [
-        //webpack问题，他会直接解析地址，而不是用js来解析，webpack用require解析，所以可以直接加，会把他当作对应的地址来解析
-        require("../assets/img/banner2.jpg"),
-        require("../assets/img/banner3.jpg"),
-        require("../assets/img/banner4.png")
-      ]
-    }
+      timer: null,
+      n: 0
+    };
   },
+  props: ["imgArr"],
   // play函数为定时器
   methods: {
     play() {
