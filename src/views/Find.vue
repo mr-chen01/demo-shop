@@ -1,3 +1,10 @@
 <template>
-    <p>我是find</p>
 </template>
+<script>
+
+export default {
+    components:{
+
+    }
+}
+</script>

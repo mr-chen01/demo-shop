@@ -1,8 +1,10 @@
 <template>
   <div class="box-message">
     <div class="message" v-for="(v,i) in messageArr" :key="i">
+      <router-link to="/Detail">
         <img :src="v.img" alt="错误">
         <div class="des">{{v.des}}</div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -36,6 +38,12 @@ export default {
     width: 100%;
 }
 .message .des{
-
+  color:black;
+}
+a {
+  text-decoration: none;
+}
+.router-link-active {
+  text-decoration: none;
 }
 </style>

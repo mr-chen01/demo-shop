@@ -6,6 +6,7 @@ import Home from '../views/Home.vue'
 import Find from '../views/Find.vue'
 import Order from '../views/Order.vue'
 import My from '../views/My.vue'
+import Detail from '../views/Detail.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/my',
     name: 'My',
     component: My
+  },
+  {
+    path: '/Detail',
+    name: 'Detail',
+    component: Detail
   },
 ]
 

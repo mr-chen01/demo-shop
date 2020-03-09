@@ -15,17 +15,18 @@
     </div>
     <!-- 轮播图 -->
    <Banner :imgArr="imgArr"/>
-    <!-- <box-message/> -->
+    <box-message/>
   </div>
 </template>
 
 <script>
 import Banner from "../components/Banner.vue";
-// import BoxMessage from "../components/box-message.vue";
+import BoxMessage from "../components/box-message.vue";
 export default {
   name: "Home",
   components: {
-    Banner
+    Banner,
+    BoxMessage
   },
   data() {
     return {
@@ -83,9 +84,9 @@ export default {
   },
   methods:{
     getList(){
-      this.$http.get('/random/10*10').then(res=>{ 
+      this.$http.get('').then(res=>{ 
         //在前面axios名字为http，由于前面已经定义过，这里只需相对地址
-        console.log(res);
+        // console.log(res);
       })
     }
   },
