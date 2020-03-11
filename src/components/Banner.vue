@@ -49,6 +49,7 @@ export default {
 <style scoped>
 .banner {
   position: relative;
+  height: 150px;
 }
 .banner .banner-circle {
   position: absolute;

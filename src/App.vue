@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <open  v-on:change="change" v-show="chOpen"/>
-    <div v-on:change="change" v-show="!chOpen"> 
+    <div class="all" v-on:change="change" v-show="!chOpen"> 
       <router-view />
       <!-- 路由展示 -->
       <nav-bottom  />

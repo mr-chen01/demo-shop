@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <!-- 顶部搜索 -->
-    <div class="index-top"></div>
+    <div class="index-top">
+      <div class="select-top">
+        <div class="location">{{LocationProvince}}</div>
+        <input class="select" type="text" />
+      </div>
+    </div>
     <!-- 顶部导航 -->
     <div class="index-category">
       <div class="category" v-for="(list,i) in lists" :key="i+10">
@@ -14,14 +19,15 @@
       </div>
     </div>
     <!-- 轮播图 -->
-   <Banner :imgArr="imgArr"/>
-    <box-message/>
+    <Banner :imgArr="imgArr" />
+    <box-message />
   </div>
 </template>
 
 <script>
 import Banner from "../components/Banner.vue";
 import BoxMessage from "../components/box-message.vue";
+
 export default {
   name: "Home",
   components: {
@@ -79,28 +85,57 @@ export default {
         require("../assets/img/banner2.jpg"),
         require("../assets/img/banner3.jpg"),
         require("../assets/img/banner4.png")
-      ]
+      ],
+      LocationProvince: "正在定位所在省", //给渲染层定义一个初始值
+      LocationCity: "正在定位所在市" //给渲染层定义一个初值
     };
   },
-  methods:{
-    getList(){
-      this.$http.get('').then(res=>{ 
+  methods: {
+    getList() {
+      this.$http.get("/api/shouji/query?appkey=bff35209754d69ae&shouji=13531248925").then(res => {
         //在前面axios名字为http，由于前面已经定义过，这里只需相对地址
-        // console.log(res);
-      })
+       console.log(res)
+      });
     }
   },
-  mounted:function(){
+  mounted: function() {
     this.getList();
   }
 };
 </script>
 
 <style scoped>
+.home {
+  background-color: rgb(255, 194, 0);
+}
 .index-top {
   height: 170px;
 }
 
+.select-top {
+  float: left;
+  height: 50px;
+  padding: 10px;
+}
+.location {
+  float: left;
+  border: 1px solid black;
+  width: 45px;
+  height: 30px;
+  margin-right: 40px;
+}
+.select {
+  float: left;
+  height: 40px;
+  width: 200px;
+}
+.index-category {
+  height: 190px;
+  width: 350px;
+  border-radius: 5% 5% 0 0;
+  margin: 0 auto;
+  background-color: #fff;
+}
 .category {
   padding-top: 10px;
   width: 25%;
@@ -133,3 +168,5 @@ export default {
   display: block;
 }
 </style>
+
+

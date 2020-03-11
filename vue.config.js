@@ -1,17 +1,21 @@
 
 module.exports = {
-    configureWebpack: {
-        devServer: {
-            proxy: {
-                //名字可以自定义，这里我用的是api
-                '/api': {
-                  target: 'http://shibe.online',//设置你调用的接口域名和端口号 别忘了加http
-                  changeOrigin: true,//这里设置是否跨域
-                  pathRewrite: {
-                    '^/api': ''
-                  }
-                }
-            }
-        }
-    },
+  devServer: {
+      open: true,
+      host: 'localhost',
+      port: 8080,
+      https: false,
+      //以上的ip和端口是我们本机的;下面为需要跨域的
+      proxy: {//配置跨域
+          '/api': {
+              target: 'https://api.binstd.com',//这里后台的地址模拟的;应该填写你们真实的后台接口
+              ws: true,
+              changOrigin: true,//允许跨域
+              pathRewrite: {
+                  '^/api': ''//请求的时候使用这个api就可以
+              }
+          }
+          
+      }
+  }
 }

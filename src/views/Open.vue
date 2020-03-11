@@ -2,7 +2,7 @@
   <div class="page-container" id="my">
     <!-- 开屏广告 -->
     <div class="conut-down" v-show="adBack">
-      <span>
+      <span v-on:click="jump()">
         点击跳转
         <b>{{n}}</b>
       </span>
@@ -19,7 +19,7 @@
         <p class="error-tip">密码不能为空</p>
       </div>
       <div class="panel">
-        <button class="btn-login btn login" v-on:click="change">登陆</button>
+        <button class="btn-login btn login" v-on:click="change()">登陆</button>
       </div>
       <div class="panel">
         <a href="#">我要登陆</a>|
@@ -51,11 +51,15 @@ export default {
     },
     change(){
         this.$emit("change", this.chOpen);
+    },
+    jump(){
+      this.adBack=false;
+        clearInterval(this.timer);  //清除定时器
     }
   },
   mounted:function(){
       this.play();
-    },
+    }
     // destroyed:function(){
     //   clearInterval(this.timer);  //清除定时器
     // }
